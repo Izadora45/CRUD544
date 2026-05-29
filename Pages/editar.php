@@ -22,7 +22,7 @@
             header("location:listar.php");
         }
     }
-?>
+?>  
 
 
 <!DOCTYPE html>

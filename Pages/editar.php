@@ -8,6 +8,20 @@
         $id_update = addslashes($_GET['id_usuario']);
         $dados = $usuario->buscarDadosUsuario($id_update);
     }
+
+    if(isset($_POST['nome']))
+    {
+        $nome = addslashes($_POST['nome']);
+        $email = addslashes($_POST['email']);
+        $telefone = addslashes($_POST['telefone']);
+
+        if(!empty($nome) && !empty($email) && !empty($telefone))
+        {
+            $usuario->atualizarDadosUsuarios($id_update, $nome, $email, $telefone);
+            
+            header("location:listar.php");
+        }
+    }
 ?>
 
 
@@ -24,7 +38,7 @@
     <form method="post">
         <input type="text" name="nome" value="<?php echo $dados['nome'];?>">
         <input type="email" name="email" value="<?php echo $dados['email'];?>">
-        <input type="tel" name="tel" value="<?php echo $dados['telefone'];?>">
+        <input type="tel" name="telefone" value="<?php echo $dados['telefone'];?>">
         <input type="submit" value="ATUALIZAR">
     </form>
 </body>

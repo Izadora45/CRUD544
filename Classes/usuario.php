@@ -67,9 +67,21 @@
             $sql->bindValue(":id", $id_usuario);
             $sql->execute();
 
-            $dados_usuario = $sql->fetch(PDO::FETCH_ASSOC);
+            $dados_usuario = $sql->fetch(PDO::FETCH_ASSOC);// na arquitetura mvc vocês vão separar muitas coisas que a prof fez junto, depois que conhecem a gente destricha
 
             return $dados_usuario;
+        }
+        //o arrey é para pegar os dados e aqui nós só estamos atualizando,
+        //função up date
+        public function atualizarDadosUsuarios($id_usuario, $nome, $email, $telefone)
+        {
+            global $pdo;
+            $sql = $pdo->prepare("UPDATE usuario SET nome = :n, email = :e, telefone = :t WHERE id_usuario = :id");
+            $sql->bindValue(":n",$nome);
+            $sql->bindValue(":e",$email);
+            $sql->bindValue(":t",$telefone);
+            $sql->bindValue(":id",$id_usuario);
+            $sql->execute();
         }
     }
 ?>
